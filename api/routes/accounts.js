@@ -8,7 +8,7 @@ router.get('/', (req,res) => {
   knex('accounts')
   .join('transactions', 'accounts.id', 'transactions.account_id')
   .select('accounts.id', 'accounts.acct_num', 'accounts.account_type')
-  .sum('transactions.amount as balance')
+  .select(knex.raw('5000 + SUM(transactions.amount) as balance'))
   .groupBy('accounts.id')
   .then(data => res.status(200).json(data))
   .catch(err =>
@@ -22,17 +22,21 @@ router.get('/:id', async(req,res) => {
     try{
         const {id} = req.params;
         const accounts = await knex('accounts')
-            .where({id})
-            .first();
-            if(!accounts){
-                return res.status(404).json({error: 'Account Not Found'})
-            }
-            res.json(accounts)
+        .join('transactions', 'accounts.id', 'transactions.account_id')
+        .where('accounts.id', id)
+        .select('accounts.id', 'accounts.acct_num', 'accounts.account_type')
+        .select(knex.raw('5000 + SUM(transactions.amount) as balance'))
+        .groupBy('accounts.id')
+        .first()
+        if(!accounts){
+            return res.status(404).json({error: 'Account Not Found'})
         }
-                catch (err) {
-                    res.status(500).json({error: err.message})
-                }
-            })
+        res.json(accounts)
+    }
+            catch (err) {
+                res.status(500).json({error: err.message})
+            }
+        })
 
 router.get('/:id/transactions', async (req,res) => {
     try{

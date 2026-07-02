@@ -30,6 +30,7 @@ function AccountDetails(){
                 <div className='account-box'>
                     <p>Account Number: {account.acct_num}</p>
                     <p>Account Type: {account.account_type}</p>
+                    <p>Balance: ${account.balance}</p>
                 </div>
 
 

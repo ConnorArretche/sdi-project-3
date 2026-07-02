@@ -19,10 +19,9 @@ const router = createBrowserRouter([
         element: <AccountTransactions/>
       },
       {
-        path: '/accounts/:id',
+        path: '/account/:id',
         element: <AccountDetails/>
       }
-      //AccountDetails - click into specific account, get info, transactions
     ],
   },
 ]);
