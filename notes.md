@@ -9,3 +9,12 @@ Categories — id, name
 Transactions — id, amount, description, timestamp, account_id(FK), category_id(FK)
 
 
+
+TO-DO:
+
+Backend:
+    Cookies for themes
+    404 for unknown routes
+
+
+

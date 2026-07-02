@@ -6,7 +6,10 @@ const knex = require('knex')(require('../../knexfile')["development"]);
 
 router.get('/', (req,res) => {
   knex('accounts')
-  .select('acct_num', 'account_type')
+  .join('transactions', 'accounts.id', 'transactions.account_id')
+  .select('accounts.id', 'accounts.acct_num', 'accounts.account_type')
+  .sum('transactions.amount as balance')
+  .groupBy('accounts.id')
   .then(data => res.status(200).json(data))
   .catch(err =>
     res.status(503).json({
