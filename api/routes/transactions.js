@@ -4,7 +4,8 @@ const knex = require('knex')(require('../../knexfile')["development"]);
 
 router.get('/', (req,res) => {
     knex('transactions')
-    .select('amount','description','time_stamp','account_id','category_id')
+    .join('categories', 'transactions.category_id', 'categories.id')
+    .select('transactions.id','amount','description','time_stamp','account_id','category_id', 'categories.name')
     .then(data => res.status(200).json(data))
     .catch(err =>
         res.status(503).json({

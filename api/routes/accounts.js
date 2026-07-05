@@ -53,6 +53,24 @@ router.get('/:id/transactions', async (req,res) => {
                 }
             })
 
+router.post('/:id/transactions', async (req, res) => {
+    const {id} = req.params;
+    const {amount, description} = req.body;
+    if(!amount || !description){
+        return res.status(400).json({error: 'Amount, Description required'})
+    } try {
+        const newTransaction = await knex('transactions')
+        .insert({amount, description, time_stamp: new Date(), account_id: id, category_id: 1})
+        .returning('id')
+        res.status(201).json({message: 'Transaction Added', transactionId: newTransaction })
+    } catch(error){
+        res.status(500).json({
+            error: 'Transaction Entry Failed',
+            details: error.message
+        })
+    }
+})
+
 router.post('/', async (req, res) => {
     const {acct_num, account_type} = req.body;
     if(!acct_num || ! account_type){

@@ -18,9 +18,10 @@ function AccountTransactions(){
                 <h1>Transactions</h1>
                 {transaction.map((t) =>
                 (
-                    <div className='transaction-box' key={t.time_stamp}>
+                    <div className='transaction-box' key={t.id}>
                         <p>${t.amount}</p>
                         <p>{t.description}</p>
+                        <p>Category: {t.name}</p>
                     </div>
                 ))}
 

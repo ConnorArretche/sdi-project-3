@@ -1,10 +1,12 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useContext} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { SettingsContext } from './SettingsContext'
 import './HomePage.css'
 
 function HomePage(){
     const [account, setAccount] = useState([]);
     const [transactions, setTransactions] = useState([])
+    const {richMode, setRichMode} = useContext(SettingsContext)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,7 +23,7 @@ function HomePage(){
         .then(data => {
             setTransactions(data.sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0,3))
         })
-    })
+    }, [])
 
     return(
         <div className='container'>
@@ -32,7 +34,7 @@ function HomePage(){
                 <div className='account_item' key={acct.id} onClick={() => navigate(`/account/${acct.id}`)}>
                     <p>Account Number: {acct.acct_num}</p>
                     <p>Account Name: {acct.account_type}</p>
-                    <p>${acct.balance}</p>
+                    <p>${richMode === 'Rich Mode' ? (acct.balance * 10000).toLocaleString(): acct.balance.toLocaleString()}</p>
                 </div>
             ))}
             </div>

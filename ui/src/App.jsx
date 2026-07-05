@@ -4,6 +4,8 @@ import PageHeader from './PageHeader'
 import HomePage from './HomePage'
 import AccountTransactions from './AccountTransactions'
 import AccountDetails from './AccountDetails'
+import SettingsPage from './SettingsPage'
+import { SettingsProvider } from './SettingsContext'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: '/account/:id',
         element: <AccountDetails/>
+      },
+      {
+        path: '/settings',
+        element: <SettingsPage/>
       }
     ],
   },
@@ -28,8 +34,9 @@ const router = createBrowserRouter([
 
 function App(){
   return (
-
-      <RouterProvider router = {router}/>
+      <SettingsProvider>
+        <RouterProvider router = {router}/>
+      </SettingsProvider>
 
   )
 }
