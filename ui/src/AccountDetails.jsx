@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { useParams} from 'react-router-dom'
 import { SettingsContext } from './SettingsContext';
+import './AccountDetails.css';
 
 function AccountDetails(){
     let {id} = useParams();
@@ -115,50 +116,52 @@ function AccountDetails(){
     if (!account) return <p>Loading...</p>
 
     return(
+        <div className='page-grid'>
         <div>
-            <h1>Account</h1>
+            <h1 className='acct-title'>Account</h1>
                 <div className='account-box'>
-                    <p>Account Number: {account.acct_num}</p>
-                    <p>Account Type: {account.account_type}</p>
-                    <p>${richMode === 'Rich Mode' ? (account.balance * 10000).toLocaleString(): account.balance.toLocaleString()}</p>
-                    <button onClick={() => setAccountForm(!accountForm)}>{accountForm ? 'Cancel': 'Edit Account'}</button>
+                    <p className='account-number'>Account Number: {account.acct_num}</p>
+                    <p className='account-type'>Account Type: {account.account_type}</p>
+                    <p className='account-bal'>${richMode === 'Rich Mode' ? (account.balance * 10000).toLocaleString(): account.balance.toLocaleString()}</p>
+                    <button className="edit-btn" onClick={() => setAccountForm(!accountForm)}>{accountForm ? 'Cancel': 'Edit Account'}</button>
                     {accountForm && (
                         <form className='account-form' onSubmit={editAccount}>
-                            <label>
+                            <label className='edit-type'>
                                 Edit Account Type:
-                                <input type="text" placeholder='Enter Account Type' name="account_type" value={accountData.account_type} onChange={accountChange}/>
+                                <input className='input-acct' type="text" placeholder='Enter Account Type' name="account_type" value={accountData.account_type} onChange={accountChange}/>
                             </label>
-                            <button type="submit">Submit</button>
+                            <button className="submit-btn" type="submit">Submit</button>
                         </form>
                     )}
                 </div>
 
             <div className='transaction-box'>
-            <h1>Transactions</h1>
+            <h1 className='trs-title'>Transactions</h1>
             <button onClick={() => setTransactionForm(!transactionForm)}>{transactionForm ? 'Cancel' : 'Add Transaction'}</button>
             {transactionForm && (
                 <form className='transaction-form' onSubmit={handleSubmit}>
-                    <label>
+                    <label className='amount-type'>
                         Amount:
-                        <input type="text" placeholder='Enter an Amount' name="amount" value={formData.amount} onChange={inputChange}/>
+                        <input className='input-amount' type="text" placeholder='Enter an Amount' name="amount" value={formData.amount} onChange={inputChange}/>
                     </label>
-                    <label>
+                    <label className='desc'>
                         Description:
-                        <input type="text" placeholder='Enter a Description' name="description" value={formData.description} onChange={inputChange}/>
+                        <input className='input-desc' type="text" placeholder='Enter a Description' name="description" value={formData.description} onChange={inputChange}/>
                     </label>
-                    <button type="submit">Submit</button>
+                    <button className='submit-btn' type="submit">Submit</button>
 
                 </form>
             )}
             {transactions.map((t) =>
             (
-                <div className='account_item' key={t.id}>
-                    <p>Amount {t.amount}</p>
-                    <p>Description: {t.description}</p>
-                    <button onClick={() => handleDelete(t.id)}>Delete</button>
+                <div className='trs-item' key={t.id}>
+                    <p className='trs-amt'>Amount ${t.amount}</p>
+                    <p className='trs-desc'>Description: {t.description}</p>
+                    <button className='del-btn' onClick={() => handleDelete(t.id)}>Delete</button>
                 </div>
             ))}
             </div>
+        </div>
         </div>
     )
 

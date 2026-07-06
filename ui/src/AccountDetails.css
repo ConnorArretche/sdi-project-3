@@ -1,0 +1,110 @@
+.page-grid {
+    display: grid;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.account-box, .transaction-box {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.acct-title, .trs-title {
+    margin-bottom: 15px;
+}
+
+.account-bal {
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.trs-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.trs-amt {
+    font-weight: bold;
+    margin: 0;
+}
+
+.trs-desc {
+    margin: 4px 0 0 0;
+    color: gray;
+}
+
+.account-form, .transaction-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.edit-type, .amount-type, .desc {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 14px;
+    background-color: #242323;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dark .account-box, .dark .transaction-box {
+    background-color: #1e1e1e;
+    border-color: #333333;
+}
+
+.dark .account-bal {
+    color: #38bdf8
+}
+
+.dark .trs-item {
+    background-color: #252525;
+    border-color: #333333;
+}
+
+.dark .account-form, .dark .transaction-form {
+    background-color: #1d7e1d;
+}
+
+.dark input {
+    background-color: #121212;
+    border-color: #444444;
+    color: #ffffff;
+}
+
+.dark button {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+.dark .del-btn {
+    background-color: #bb0303;
+    color: #ffffff;
+}

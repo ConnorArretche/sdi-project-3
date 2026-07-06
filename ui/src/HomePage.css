@@ -1,3 +1,68 @@
-.account_item{
-    border-bottom: 2px solid black;
+* {
+    box-sizing: border-box;
+}
+.home-page-container {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+.home-page-container .acct-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.home-page-container .account-item {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    height: 100px;
+}
+
+.home-page-container .section-title {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.home-page-container .recent-transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.home-page-container .transaction-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 15px;
+    height: 100px;
+}
+
+.home-page-container .account-item p, .home-page-container .transaction-box p {
+    margin: 4px 0;
+}
+
+.dark .home-page-container .account-item,
+.dark .home-page-container .transaction-box {
+  background-color: #1e1e1e;
+  border-color: #333333;
+}
+.dark .home-page-container .acct-amount {
+    color:#38bdf8;
+}
+
+.dark .home-page-container .t-amount {
+    color: #38bdf8;
 }

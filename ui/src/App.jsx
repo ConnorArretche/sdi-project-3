@@ -5,6 +5,7 @@ import HomePage from './HomePage'
 import AccountTransactions from './AccountTransactions'
 import AccountDetails from './AccountDetails'
 import SettingsPage from './SettingsPage'
+import NotFound from './NotFound'
 import { SettingsProvider } from './SettingsContext'
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/settings',
         element: <SettingsPage/>
+      },
+      {
+        path: '*',
+        element: <NotFound/>
       }
     ],
   },

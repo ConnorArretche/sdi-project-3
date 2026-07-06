@@ -26,3 +26,6 @@ app.listen(port, () => {
   console.log(`Listening at port: ${port}`);
 });
 
+app.use((req, res) => {
+  res.status(404).json({error: 'Route Not Found :('})
+})
